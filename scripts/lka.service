@@ -1,0 +1,16 @@
+[Unit]
+Description=LKA Service
+[Service]
+ExecStart=/usr/local/bin/node /home/ubuntu/prod/lka/bin/www
+Restart=always
+User=ubuntu
+# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+EnvironmentFile=/home/ubuntu/prod/lka/.env
+WorkingDirectory=/home/ubuntu/prod/lka
+StartLimitBurst=0
+
+[Install]
+WantedBy=multi-user.target
