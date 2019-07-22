@@ -6,12 +6,12 @@ let studentClassSchemaDef = require('./student_class-admin')
 let classEnrollDef = require('./classenroll-admin')
 
 const schemas = {
-  Student: studentDef,
-  Teacher: teacherDef,
-  Course: courseDef,
+  ClassEnroll: classEnrollDef,
   Class: courseInstanceDef,
   StudentClass: studentClassSchemaDef,
-  ClassEnroll: classEnrollDef,
+  Course: courseDef,
+  Student: studentDef,
+  Teacher: teacherDef,
 };
 
 const config = {
