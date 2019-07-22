@@ -7,12 +7,12 @@ let faqDef = require('./faq-admin');
 let termsDef = require('./terms-admin');
 let articleDef = require('./article-admin');
 const schemas = {
-  'GeneralInfo': generalInfoDef,
-  'Faq': faqDef,
   'Event': eventDef,
+  "Article": articleDef,
+  'Faq': faqDef,
+  'GeneralInfo': generalInfoDef,
   'KeyNote': keyNoteDef,
   'Terms': termsDef,
-  "Article": articleDef,
 };
 
 const config = {
