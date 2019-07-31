@@ -15,6 +15,7 @@ var schema = new Schema(
     timeSlot: {type: String, required: false},
     teacher: {type: Schema.Types.ObjectId, ref: 'Teacher', required: true},
     course: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+    enrollTerm: {type: Schema.Types.ObjectId, ref: 'Terms', required: true},
     hot: {type: Boolean, default: false}
   }
 );

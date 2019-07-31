@@ -1,9 +1,9 @@
 const schema = require('./class');
 
-var brief = "title course teacher startTime endTime dayOfWeek hot";
-var detail = "title | description | course price  | teacher | startTime endTime | duration | dayOfWeek timeSlot | notes | hot";
-var creat = "title course description teacher price startTime endTime duration dayOfWeek timeSlot notes hot";
-var edit = "title course description teacher price startTime endTime duration dayOfWeek timeSlot notes hot";
+var brief = "title | course teacher  hot | startTime endTime dayOfWeek timeSlot";
+var detail = "title | description | course teacher price | startTime endTime duration | dayOfWeek timeSlot | notes | hot enrollTerm";
+var creat = "title course description teacher price startTime endTime duration dayOfWeek timeSlot notes hot enrollTerm";
+var edit = "title course description teacher price startTime endTime duration dayOfWeek timeSlot notes hot enrollTerm";
 var textSearch = "title teacher course";
 var index = "title";
 
@@ -21,4 +21,9 @@ module.exports = {
       "ClassEnroll": "Class Enrollments"
     }
   },
+
+  associations: {
+    'StudentClass': ['student',  'Export Students'],// further show the student (object refer field) for this reference list
+    'ClassEnroll':  ['student', 'Export Enrollments'],// further show the student (object refer field) for this reference list
+  }
 };
