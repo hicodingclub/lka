@@ -2,8 +2,9 @@ let studentDef = require('./student-admin');
 let teacherDef = require('./teacher-admin');
 let courseDef = require('./course-admin');
 let courseInstanceDef = require('./class-admin');
-let studentClassSchemaDef = require('./student_class-admin')
-let classEnrollDef = require('./classenroll-admin')
+let studentClassSchemaDef = require('./student_class-admin');
+let classEnrollDef = require('./classenroll-admin');
+let termsDef = require('./terms-admin');
 
 const schemas = {
   ClassEnroll: classEnrollDef,
@@ -12,6 +13,7 @@ const schemas = {
   Course: courseDef,
   Student: studentDef,
   Teacher: teacherDef,
+  Terms: termsDef,
 };
 
 const config = {

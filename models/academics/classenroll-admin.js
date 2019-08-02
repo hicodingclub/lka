@@ -15,4 +15,5 @@ module.exports = {
     views,
     name: 'Class Enrollments',
     patch: ['muser_id'], //extra fields to patch to schema
+    api: 'LCRUDE',  //E - export
 };

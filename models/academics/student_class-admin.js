@@ -14,4 +14,5 @@ module.exports = {
     schema, 
     views,
     embeddedViewOnly: true,  //only viewable from sub-view
+    api: 'LCRUDE',  //E - export
 };

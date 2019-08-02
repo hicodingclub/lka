@@ -1,7 +1,7 @@
 const schema = require('./class');
 
-var brief = "title course startTime endTime dayOfWeek";
-var detail = "title | description | course price  | teacher | startTime endTime | duration | dayOfWeek timeSlot";
+var brief = "title course startTime endTime dayOfWeek timeSlot (enrollTerm)";
+var detail = "title | description | course teacher price | startTime endTime duration | dayOfWeek timeSlot";
 var creat = "title course description teacher price startTime endTime dayOfWeek hot";
 var edit = "title course description teacher price startTime endTime dayOfWeek hot";
 var textSearch = "title teacher course";
@@ -19,7 +19,9 @@ module.exports = {
     listType: 'table', // table, list, or grid
     listItemPipelines: [],
     detailActions: [["Enroll", "/actions/enroll"]],
+
     detailRefBlackList: ['StudentClass', 'ClassEnroll'], // not show these reference sub list in detail view
+
     listCategoryField: 'course',
     listTitle: 'Classes',
 
