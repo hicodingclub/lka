@@ -33,7 +33,8 @@ var schema = new Schema(
     GuardianOneName: {type: String, required: false, maxlength: 100},
     GuardianOnePhone: {type: String, required: false, maxlength: 20,
       trim: true,
-      validate: [validatePhone, 'Please fill a valid phone number']
+      validate: [validatePhone, 'Please fill a valid phone number'],
+      required: true,
     },
     GuardianOneEmail: {type: String, required: false, maxlength: 100,
       trim: true,
