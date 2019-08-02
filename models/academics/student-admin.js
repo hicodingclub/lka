@@ -1,6 +1,6 @@
 const schema = require('./student');
 
-const brief = "first_name last_name email grade muser_id";
+const brief = "first_name last_name email grade school GuardianOnePhone muser_id";
 const detail = "first_name last_name | date_of_birth grade | email phoneNumber | school | GuardianOneName GuardianOnePhone GuardianOneEmail | GuardianTwoName GuardianTwoPhone GuardianTwoEmail | muser_id";
 const create = "first_name last_name date_of_birth grade email phoneNumber school GuardianOneName GuardianOnePhone GuardianOneEmail GuardianTwoName GuardianTwoPhone GuardianTwoEmail";
 const edit = "first_name last_name date_of_birth grade email phoneNumber school GuardianOneName GuardianOnePhone GuardianOneEmail GuardianTwoName GuardianTwoPhone GuardianTwoEmail muser_id";
