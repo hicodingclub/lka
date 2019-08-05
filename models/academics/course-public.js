@@ -19,7 +19,13 @@ module.exports = {
   api: "LR",
   actionViews: 'H', //home - home page list view, s: select view for pipeline/composite
   mraUI: {
-    listTitle: 'Class Categories',
-    detailTitle: 'Class Category',
+    listTitle: 'All Programs',
+    detailTitle: 'Program',
+
+    detailRefName: {
+      'Class': 'Program Classes',
+    },
+    detailRefBlackList: ['Teacher'], // not show these reference sub list in detail view
+
   }
 };
