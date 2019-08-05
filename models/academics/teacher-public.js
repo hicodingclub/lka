@@ -1,9 +1,9 @@
 const schema = require('./teacher');
 
-const brief = "firstName lastName courses introduction photo";
-const detail = "firstName lastName | email | phoneNumber  courses | introduction | photo";
-const create = "firstName lastName courses introduction email phoneNumber photo";
-const edit = "firstName lastName courses introduction email phoneNumber photo";
+const brief = "firstName lastName courses[Program] introduction photo";
+const detail = "firstName lastName | email | phoneNumber  courses[Program] | introduction | photo";
+const create = "firstName lastName courses[Program] introduction email phoneNumber photo";
+const edit = "firstName lastName courses[Program] introduction email phoneNumber photo";
 const textSearch = "firstName lastName courses email phoneNumber";
 const index = "firstName lastName";
 
@@ -13,10 +13,11 @@ module.exports = {
   schema,
   views,
   api: "LR",
+  name: "Instructors",
   mraUI: {
     listType: 'grid', // table, list, or grid
-    listTitle: 'Our Staff',
-    detailTitle: 'Staff',
+    listTitle: 'Instructors',
+    detailTitle: 'Instructor',
 
   },
 };

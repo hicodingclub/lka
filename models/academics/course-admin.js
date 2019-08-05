@@ -16,4 +16,11 @@ const views = [brief, detail, create, edit, textSearch, index]
 module.exports = {
   schema,
   views,
+  name: 'Programs',
+  mraUI: {
+    detailRefName: {
+      'Class': 'Program Classes',
+      'Teacher': 'Program Instructors'
+    },
+  }
 };

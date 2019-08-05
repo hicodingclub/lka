@@ -17,5 +17,6 @@ module.exports = {
   mraUI: {
     detailType: 'term', ////use the 'term' view in detailed page
     listType: 'list', // list, table, or grid
+    detailRefBlackList: ['Class'], // not show these reference sub list in detail view
   },
 };
