@@ -30,6 +30,8 @@ module.exports = {
 
     detailTitle: 'Class',
 
+    homeListNumber: 6,
+
     selectActionViewType: 'dropdown', // select extraView type: dropdown, grid, table, list
   },
 };

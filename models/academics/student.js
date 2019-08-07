@@ -52,6 +52,7 @@ var schema = new Schema(
       lowercase: true,
       validate: [validateEmail, 'Please fill a valid email address'],
     },
+    notes: {type: String, textarea: true},
   },
   {
     timestamps: true
