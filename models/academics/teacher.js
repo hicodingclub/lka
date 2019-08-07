@@ -7,7 +7,7 @@ var schema = new Schema(
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     courses: {type: Schema.Types.ObjectId, ref: 'Course', required: true},
-    introduction: {type: String, required: true},
+    introduction: {type: String, required: true, textarea: true},
     email: {type: String, required: true},
     phoneNumber: {type: String},
     // mraType: a link to a picture; mraPresent: present the picture; mraSharable: if the picture is sharable with other items
