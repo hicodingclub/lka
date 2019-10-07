@@ -9,6 +9,11 @@ const logger = require('./lib/logger');
 const db = require('./db');
 
 const meanRestExpress = require('mean-rest-express');
+
+//setup emailing
+const { MddsEmailer } = require('mdds-emailing');
+const emailer = new MddsEmailer('./.ses.json');
+
 //for auth client
 const authApp = require('mdds-express-auth-app');
 const authFuncs = authApp.authFuncs;

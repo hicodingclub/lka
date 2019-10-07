@@ -8,6 +8,11 @@ const logger = require('./lib/logger');
 const db = require('./db');
 
 const meanRestExpress = require('mean-rest-express');
+
+//setup emailing
+const { GetEmailTemplateManageRouter, MddsEmailer } = require('mdds-emailing');
+const emailer = new MddsEmailer('./.ses.json');
+
 //for auth client
 const authApp = require('mdds-express-auth-app');
 const authFuncs = authApp.authFuncs;
@@ -22,6 +27,9 @@ const authzRolesRouter = authServer.GetDefaultRolesManageRouter('Roles', authFun
 
 const defaultUserDef = authServer.authUserDef;
 const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFuncs);
+
+// for Email Template models
+const emailingRouter = GetEmailTemplateManageRouter("EmailTemplates", authFuncs);
 
 //for academics models
 const academicsDbDefinition = require('./models/academics/index');
@@ -50,7 +58,7 @@ const dbSOption = {
 const fileSvrRouter = fileSvr.ExpressRouter(defaultAdminSysDef, 'Files', authFuncs, fileSOption);
 
 //Authorization App Client. Call it after all meanRestExpress resources are generated.
-const manageModule = ['Users', 'Academics', 'PublicInfo', 'Pipeline', 'Access', 'Roles', 'Files']; //the modules that manages
+const manageModule = ['Users', 'Academics', 'PublicInfo', 'Pipeline', 'Access', 'Roles', 'Files', 'EmailTemplates']; //the modules that manages
 //pass in authzRolesRouter so authApp can upload the managed role moduoes to authzRolesRouter
 authApp.run('local', 'app-key', 'app-secrete', authzRolesRouter, {'roleModules': manageModule});
 
@@ -75,6 +83,7 @@ app.use('/api/files', fileSvrRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/roles', authzRolesRouter);
 app.use('/api/access', authzAccessRouter);
+app.use('/api/emailtemplate', emailingRouter);
 
 app.use('/api/auth', authRouter);
 
