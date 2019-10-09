@@ -70,3 +70,6 @@ public-admin
 .idea/*
 
 storage/uploads/*
+
+.ses.json
+.ses.*
