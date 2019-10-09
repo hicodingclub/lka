@@ -12,6 +12,10 @@ const meanRestExpress = require('mean-rest-express');
 //setup emailing
 const { GetEmailTemplateManageRouter, MddsEmailer } = require('mdds-emailing');
 const emailer = new MddsEmailer('./.ses.json');
+const emailInfo = {
+  serverUrl: process.env.ADMIN_SERVER_URL || 'http://localhost:3001',
+  serverUrlPasswordReset: process.env.ADMIN_PASSWD_RESET_URL || 'http://localhost:3001/auth/reset/',
+}
 
 //for auth client
 const authApp = require('mdds-express-auth-app');
@@ -21,6 +25,7 @@ const authServer = require('mdds-mongoose-express-auth-server');
 const authAccountDef = authServer.authAccountDef;
 const option = {authz: 'role'}; //admin role based authorization
 const authRouter = authServer.GetDefaultAuthnRouter(authAccountDef, option);
+authRouter.setEmailer(emailer, emailInfo); // set the emailer instance for sending emails
 
 const authzAccessRouter = authServer.GetDefaultAccessManageRouter('Access', authFuncs); //manage public access module
 const authzRolesRouter = authServer.GetDefaultRolesManageRouter('Roles', authFuncs); //manage admin roles module
