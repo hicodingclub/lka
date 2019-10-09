@@ -41,6 +41,7 @@ packages=(
   "mdds-angular-auth"
   "mdds-angular-file"
   "mdds-express-auth-app"
+  "mdds-emailing"
   "mdds-mongoose-express-auth-server"
   "mdds-mongoose-express-file-server"
   "mean-rest-express"

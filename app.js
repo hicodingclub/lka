@@ -9,6 +9,15 @@ const logger = require('./lib/logger');
 const db = require('./db');
 
 const meanRestExpress = require('mean-rest-express');
+
+//setup emailing
+const { MddsEmailer } = require('mdds-emailing');
+const emailer = new MddsEmailer('./.ses.json');
+const emailInfo = {
+  serverUrl: process.env.SERVER_URL || 'http://localhost:3000',
+  serverUrlPasswordReset: process.env.PASSWD_RESET_URL || 'http://localhost:3000/auth/reset/',
+}
+
 //for auth client
 const authApp = require('mdds-express-auth-app');
 const authFuncs = authApp.authFuncs;
@@ -17,6 +26,7 @@ const authServer = require('mdds-mongoose-express-auth-server');
 const defaultUserDef = authServer.authUserDef;
 const option = {authz: 'group'}; //user group based authorization
 const authRouter = authServer.GetDefaultAuthnRouter(defaultUserDef, option);
+authRouter.setEmailer(emailer, emailInfo); // set the emailer instance for sending emails
 const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFuncs);
 
 // this is special: we only get the router, but will only use it internally so authApp can pass managed access modules to it.
