@@ -1,9 +1,9 @@
 const schema = require('./class');
 
-var brief = "title (course)[Program] startTime endTime dayOfWeek timeSlot (enrollTerm)";
-var detail = "title | description | course[Program] teacher[Instructor] price | startTime endTime duration | dayOfWeek timeSlot";
-var creat = "title course[Program] description teacher[Instructor] price startTime endTime dayOfWeek hot";
-var edit = "title course[Program] description teacher[Instructor] price startTime endTime dayOfWeek hot";
+var brief = "title (course)[Program] (season) startTime endTime dayOfWeek timeSlot (enrollTerm)";
+var detail = "title | description | course[Program] teacher[Instructor] price | season startTime endTime duration | dayOfWeek timeSlot";
+var creat = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
+var edit = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
 var textSearch = "title teacher course";
 var index = "title";
 
@@ -23,8 +23,15 @@ module.exports = {
 
     detailRefBlackList: ['StudentClass', 'ClassEnroll'], // not show these reference sub list in detail view
 
-    listCategoryField: 'course',
-    listCategoryShowMore: 'description', //if listCategoryField is a reference, show more info of this ref (list of fields to show)
+    listCategories: [
+      {
+        listCategoryField: 'course',
+        listCategoryShowMore: 'description', //if listCategoryField is a reference, show more info of this ref (list of fields to show)
+      },
+      {
+        listCategoryField: 'season',
+      },
+    ],
 
     listTitle: 'Programs and Classes',
 
