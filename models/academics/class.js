@@ -7,6 +7,7 @@ var schema = new Schema(
     title: {type: String, required: true},
     description: {type: String, required: true, editor: true},
     price: {type: String, required: true},
+    season: {type: String, maxlength: 50},
     startTime: {type: Date, required: true},
     endTime: {type: Date, required: true},
     duration: {type: String, required: false},
