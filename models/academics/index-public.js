@@ -28,6 +28,8 @@ const config = {
 const authz = {
   'module-authz': {'LoginUser': 'R', 'Anyone': ''},
   'Class': {'LoginUser': '', 'Anyone': 'R'},
+  'Teacher': {'LoginUser': '', 'Anyone': 'R'},
+  'Course': {'LoginUser': '', 'Anyone': 'R'},
   'Student': {'LoginUser': {'others': '', 'own': 'CRUD'}, 'Anyone': ''},
   'ClassEnroll': {'LoginUser': {'others': '', 'own': 'CRUD'}, 'Anyone': ''},
 }

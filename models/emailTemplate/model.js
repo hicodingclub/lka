@@ -19,7 +19,7 @@ const emailTemplateSchema = new Schema({
   },
   subject: { type: String, required: true },
   content: { type: String, editor: true, required: true },
-  tag: { type: String, required: true, unique: true },
+  tag: { type: String, required: true, index: { unique: true, sparse: true },},
 });
 
 const brief = "templateName fromEmail subject tag";
