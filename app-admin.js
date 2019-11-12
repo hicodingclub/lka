@@ -10,7 +10,7 @@ const db = require('./db');
 const meanRestExpress = require('mean-rest-express');
 
 //setup emailing
-const { GetEmailTemplateManageRouter, MddsEmailer } = require('mdds-emailing');
+const { GetEmailingManageRouter, MddsEmailer } = require('mdds-emailing');
 const emailer = new MddsEmailer('./.ses.json');
 const emailInfo = {
   serverUrl: process.env.ADMIN_SERVER_URL || 'http://localhost:3001',
@@ -34,7 +34,7 @@ const defaultUserDef = authServer.authUserDef;
 const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFuncs);
 
 // for Email Template models
-const emailingRouter = GetEmailTemplateManageRouter("EmailTemplates", authFuncs);
+const emailingRouter = GetEmailingManageRouter("Emailing", authFuncs);
 
 //for academics models
 const academicsDbDefinition = require('./models/academics/index');
@@ -88,7 +88,7 @@ app.use('/api/files', fileSvrRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/roles', authzRolesRouter);
 app.use('/api/access', authzAccessRouter);
-app.use('/api/emailtemplate', emailingRouter);
+app.use('/api/emailing', emailingRouter);
 
 app.use('/api/auth', authRouter);
 
