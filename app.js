@@ -8,10 +8,10 @@ const logger = require('./lib/logger');
 
 const db = require('./db');
 
-const meanRestExpress = require('mean-rest-express');
+const meanRestExpress = require('@hicoder/express-core');
 
 //setup emailing
-const { MddsEmailer } = require('mdds-emailing');
+const { MddsEmailer } = require('@hicoder/express-emailing');
 const emailer = new MddsEmailer('./.ses.json');
 const emailInfo = {
   serverUrl: process.env.SERVER_URL || 'http://localhost:3000',
@@ -19,10 +19,10 @@ const emailInfo = {
 }
 
 //for auth client
-const authApp = require('mdds-express-auth-app');
+const authApp = require('@hicoder/express-auth-app');
 const authFuncs = authApp.authFuncs;
 //for auth server
-const authServer = require('mdds-mongoose-express-auth-server');
+const authServer = require('@hicoder/express-auth-server');
 const defaultUserDef = authServer.authUserDef;
 const option = {authz: 'group'}; //user group based authorization
 const authRouter = authServer.GetDefaultAuthnRouter(defaultUserDef, option);
@@ -46,7 +46,7 @@ const pipelineDef = require('./models/pipeline/index');
 const pipelineRouter = meanRestExpress.RestRouter(pipelineDef, 'Pipeline', authFuncs);
 
 //file server
-const fileSvr = require('mdds-mongoose-express-file-server');
+const fileSvr = require('@hicoder/express-file-server');
 const defaultAdminSysDef = fileSvr.sampleAdminSysDef;
 const fileSOption = {
   storage: 'fs',

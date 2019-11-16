@@ -35,16 +35,19 @@ echo "Upgrade to MDDS and MEAN-REST VERSION $VERSION..."
 BASEDIR=$PWD
 
 packages=(
-  "mean-rest-angular"
-  "mean-rest-angular-cli"
-  "mdds-angular-composite"
-  "mdds-angular-auth"
-  "mdds-angular-file"
-  "mdds-express-auth-app"
-  "mdds-emailing"
-  "mdds-mongoose-express-auth-server"
-  "mdds-mongoose-express-file-server"
-  "mean-rest-express"
+  "@hicoder\/angular-core"
+  "@hicoder\/angular-cli"
+  "@hicoder\/angular-composite"
+  "@hicoder\/angular-action-base"
+  "@hicoder\/angular-action-email"
+  "@hicoder\/angular-auth"
+  "@hicoder\/angular-file"
+  "@hicoder\/angular-summernote"
+  "@hicoder\/express-emailing"
+  "@hicoder\/express-auth-app"
+  "@hicoder\/express-auth-server"
+  "@hicoder\/express-file-server"
+  "@hicoder\/express-core"
 )
 
 BASEDIR=$PWD
