@@ -303,16 +303,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-mean-rest-angular
+@hicoder/angular-core
 MIT
 
-mdds-angular-file
+@hicoder/angular-file
 MIT
 
-mdds-angular-composite
+@hicoder/angular-composite
 MIT
 
-mdds-angular-auth
+@hicoder/angular-auth
 MIT
 
 core-js
