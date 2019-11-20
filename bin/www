@@ -3,28 +3,37 @@
 /**
  * Module dependencies.
  */
-
-var debug = require('debug')('lka:server');
-var http = require('http');
+const http = require('http');
 
 require('dotenv').config()
 
 const logger=require('../lib/logger')
+
+/**
+ * Normalize a port into a number.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  return port; // NaN or number returned;
+}
+
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
-var admin_port = process.env.ADMIN_PORT? normalizePort(process.env.ADMIN_PORT) : port + 1;
-var listening_address = process.env.LISTENING_ADDR || '0.0.0.0';
+const port = normalizePort(process.env.PORT || '3000');
+const admin_port = process.env.ADMIN_PORT? normalizePort(process.env.ADMIN_PORT) : port + 1;
+const listening_address = process.env.LISTENING_ADDR || '0.0.0.0';
 
 /**
  * Create HTTP server.
  */
-var app = require('../app');
+const app = require('../app');
 app.set('port', port);
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -37,7 +46,7 @@ server.on('listening', onListening(server));
 /**
  * Create HTTP server for admin app.
  */
-var admin_app = require('../app-admin');
+const admin_app = require('../app-admin');
 
 admin_app.set('port', admin_port);
 
@@ -45,7 +54,7 @@ admin_app.set('port', admin_port);
  * Create HTTP server.
  */
 
-var admin_server = http.createServer(admin_app);
+const admin_server = http.createServer(admin_app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -57,36 +66,16 @@ admin_server.on('listening', onListening(admin_server));
 
 
 /**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-
-/**
  * Event listener for HTTP server "error" event.
  */
 
 function onError(port) {
-  var onErrorFunc = function(error) {
+  const onErrorFunc = function(error) {
 	  if (error.syscall !== 'listen') {
 	    throw error;
 	  }
 	
-	  var bind = typeof port === 'string'
+	  const bind = typeof port === 'string'
 	    ? 'Pipe ' + port
 	    : 'Port ' + port;
 	
@@ -112,12 +101,11 @@ function onError(port) {
  */
 
 function onListening(server) {
-  var onListeningFunc = function() {
-	  var addr = server.address();
-	  var bind = typeof addr === 'string'
+  const onListeningFunc = function() {
+	  const addr = server.address();
+	  const bind = typeof addr === 'string'
 	    ? 'pipe ' + addr
 	    : addr.address + ':' + addr.port;
-	  debug('Listening on ' + bind);
 	  logger.debug('Listening on ' + bind);
   }
   return onListeningFunc;

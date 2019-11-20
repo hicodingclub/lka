@@ -5,14 +5,15 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 
 const logger = require('./lib/logger');
-const db = require('./db');
+// connect db
+require('./db');
 
 const meanRestExpress = require('@hicoder/express-core');
 
-//setup emailing
+// setup emailing
 const { GetEmailingManageRouter, MddsEmailer } = require('@hicoder/express-emailing');
 const emailer = new MddsEmailer('./.ses.json');
-const emailInfo = {
+const emailInfoForAuth = {
   serverUrl: process.env.ADMIN_SERVER_URL || 'http://localhost:3001',
   serverUrlPasswordReset: process.env.ADMIN_PASSWD_RESET_URL || 'http://localhost:3001/auth/reset/',
 }
@@ -23,12 +24,12 @@ const authFuncs = authApp.authFuncs;
 //for auth server
 const authServer = require('@hicoder/express-auth-server');
 const authAccountDef = authServer.authAccountDef;
-const option = {authz: 'role'}; //admin role based authorization
+const option = {authz: 'role'}; // admin role based authorization
 const authRouter = authServer.GetDefaultAuthnRouter(authAccountDef, option);
-authRouter.setEmailer(emailer, emailInfo); // set the emailer instance for sending emails
+authRouter.setEmailer(emailer, emailInfoForAuth); // set the emailer instance for sending emails
 
-const authzAccessRouter = authServer.GetDefaultAccessManageRouter('Access', authFuncs); //manage public access module
-const authzRolesRouter = authServer.GetDefaultRolesManageRouter('Roles', authFuncs); //manage admin roles module
+const authzAccessRouter = authServer.GetDefaultAccessManageRouter('Access', authFuncs); // manage public access module
+const authzRolesRouter = authServer.GetDefaultRolesManageRouter('Roles', authFuncs); // manage admin roles module
 
 const defaultUserDef = authServer.authUserDef;
 const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFuncs);
@@ -36,35 +37,31 @@ const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFunc
 // for Email Template models
 const emailingRouter = GetEmailingManageRouter("Emailing", authFuncs);
 
-//for academics models
+// for academics models
 const academicsDbDefinition = require('./models/academics/index');
 const academicsRouter = meanRestExpress.RestRouter(academicsDbDefinition, 'Academics', authFuncs);
 
-//for public models
+// for public models
 const publicInfoDbDefinition = require('./models/publicInfo/index');
 const publicInfoRouter = meanRestExpress.RestRouter(publicInfoDbDefinition, 'PublicInfo', authFuncs);
 
-//for pipeline models
-const pipelineDef = require('./models/pipeline/index');
-const pipelineRouter = meanRestExpress.RestRouter(pipelineDef, 'Pipeline', authFuncs);
-
-//file server
+// file server
 const fileSvr = require('@hicoder/express-file-server');
 const defaultAdminSysDef = fileSvr.sampleAdminSysDef;
 const fileSOption = {
   storage: 'fs',
   directory: path.join(__dirname, 'storage', 'uploads'),
-  linkRoot: '/api/files', //link = linkRoot + '/download' - download needs to be enabled.
+  linkRoot: '/api/files', // link = linkRoot + '/download' - download needs to be enabled.
 }
 const dbSOption = {
   storage: 'db',
-  linkRoot: '/api/files',   //link = linkRoot + '/download' - download needs to be enabled.
+  linkRoot: '/api/files',   // link = linkRoot + '/download' - download needs to be enabled.
 }
 const fileSvrRouter = fileSvr.ExpressRouter(defaultAdminSysDef, 'Files', authFuncs, fileSOption);
 
-//Authorization App Client. Call it after all meanRestExpress resources are generated.
-const manageModule = ['Users', 'Academics', 'PublicInfo', 'Pipeline', 'Access', 'Roles', 'Files', 'EmailTemplates']; //the modules that manages
-//pass in authzRolesRouter so authApp can upload the managed role moduoes to authzRolesRouter
+// Authorization App Client. Call it after all meanRestExpress resources are generated.
+const manageModule = ['Users', 'Academics', 'PublicInfo', 'Access', 'Roles', 'Files', 'EmailTemplates']; // the modules that manages
+// pass in authzRolesRouter so authApp can upload the managed role moduoes to authzRolesRouter
 authApp.run('local', 'app-key', 'app-secrete', authzRolesRouter, {'roleModules': manageModule});
 
 const app = express();
@@ -83,7 +80,6 @@ app.use(express.static(path.join(__dirname, 'public-admin')));
 
 app.use('/api/academics', academicsRouter);
 app.use('/api/publicinfo', publicInfoRouter);
-app.use('/api/pipeline', pipelineRouter);
 app.use('/api/files', fileSvrRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/roles', authzRolesRouter);
@@ -92,10 +88,8 @@ app.use('/api/emailing', emailingRouter);
 
 app.use('/api/auth', authRouter);
 
+// fall back to index.html
 app.get(/.*/, function(req, res, next) {
-  logger.error("Error: ", {err: 'nt found'})
-  logger.debug("Error: ", {err: 'nt found'})
-
   if (req.accepts('html')) {
 	  return res.sendFile(path.join(__dirname, './public-admin/index.html'));
   } else {
