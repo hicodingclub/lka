@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const appRootPath = require('app-root-path');
 
 const logger = require('./lib/logger');
 
@@ -13,7 +14,8 @@ const meanRestExpress = require('@hicoder/express-core');
 
 // setup emailing
 const { MddsEmailer } = require('@hicoder/express-emailing');
-const emailer = new MddsEmailer('./.ses.json');
+const awsConfFile = path.join(appRootPath, process.env.AWS_CONFIG_FILE_NAME||'.aws.conf.json');
+const emailer = new MddsEmailer(awsConfFile);
 const emailInfoForAuth = {
   serverUrl: process.env.SERVER_URL || 'http://localhost:3000',
   serverUrlPasswordReset: process.env.PASSWD_RESET_URL || 'http://localhost:3000/auth/reset/',

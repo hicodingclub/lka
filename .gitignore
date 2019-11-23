@@ -73,3 +73,6 @@ storage/uploads/*
 
 .ses.json
 .ses.*
+
+*.zip
+dump

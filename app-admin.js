@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const appRootPath = require('app-root-path');
 
 const logger = require('./lib/logger');
 // connect db
@@ -12,7 +13,8 @@ const meanRestExpress = require('@hicoder/express-core');
 
 // setup emailing
 const { GetEmailingManageRouter, MddsEmailer } = require('@hicoder/express-emailing');
-const emailer = new MddsEmailer('./.ses.json');
+const awsConfFile = path.join(appRootPath, process.env.AWS_CONFIG_FILE_NAME||'.aws.conf.json');
+const emailer = new MddsEmailer(awsConfFile);
 const emailInfoForAuth = {
   serverUrl: process.env.ADMIN_SERVER_URL || 'http://localhost:3001',
   serverUrlPasswordReset: process.env.ADMIN_PASSWD_RESET_URL || 'http://localhost:3001/auth/reset/',
@@ -40,6 +42,7 @@ const emailingRouter = GetEmailingManageRouter("Emailing", authFuncs);
 // for academics models
 const academicsDbDefinition = require('./models/academics/index');
 const academicsRouter = meanRestExpress.RestRouter(academicsDbDefinition, 'Academics', authFuncs);
+academicsRouter.setEmailer(emailer, {}); // set the emailer instance for sending emails
 
 // for public models
 const publicInfoDbDefinition = require('./models/publicInfo/index');
