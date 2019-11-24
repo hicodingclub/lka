@@ -32,9 +32,11 @@ authRouter.setEmailer(emailer, emailInfoForAuth); // set the emailer instance fo
 
 const authzAccessRouter = authServer.GetDefaultAccessManageRouter('Access', authFuncs); // manage public access module
 const authzRolesRouter = authServer.GetDefaultRolesManageRouter('Roles', authFuncs); // manage admin roles module
+authzRolesRouter.setEmailer(emailer, {});
 
 const defaultUserDef = authServer.authUserDef;
 const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFuncs);
+usersRouter.setEmailer(emailer, {});
 
 // for Email Template models
 const emailingRouter = GetEmailingManageRouter("Emailing", authFuncs);
