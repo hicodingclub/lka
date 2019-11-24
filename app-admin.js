@@ -13,7 +13,7 @@ const meanRestExpress = require('@hicoder/express-core');
 
 // setup emailing
 const { GetEmailingManageRouter, MddsEmailer } = require('@hicoder/express-emailing');
-const awsConfFile = path.join(appRootPath, process.env.AWS_CONFIG_FILE_NAME||'.aws.conf.json');
+const awsConfFile = path.join(appRootPath.toString(), process.env.AWS_CONFIG_FILE_NAME||'.aws.conf.json');
 const emailer = new MddsEmailer(awsConfFile);
 const emailInfoForAuth = {
   serverUrl: process.env.ADMIN_SERVER_URL || 'http://localhost:3001',
