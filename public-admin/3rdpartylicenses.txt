@@ -309,6 +309,15 @@ MIT
 @hicoder/angular-file
 MIT
 
+@hicoder/angular-action-base
+MIT
+
+@hicoder/angular-action-email
+MIT
+
+@hicoder/angular-richtext
+MIT
+
 @hicoder/angular-auth
 MIT
 

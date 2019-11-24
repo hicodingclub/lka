@@ -315,6 +315,15 @@ MIT
 @hicoder/angular-auth
 MIT
 
+@hicoder/angular-richtext
+MIT
+
+@hicoder/angular-action-base
+MIT
+
+@hicoder/angular-action-email
+MIT
+
 core-js
 MIT
 Copyright (c) 2014-2019 Denis Pushkarev
