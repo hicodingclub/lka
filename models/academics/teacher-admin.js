@@ -13,6 +13,7 @@ module.exports = {
   schema,
   views,
   name: "Instructors",
+  api: 'LCRUDM',  //E - export, M - eMail
   mraUI: {
     listType: 'grid', // table, list, or grid
   },

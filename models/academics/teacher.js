@@ -8,7 +8,9 @@ var schema = new Schema(
     lastName: {type: String, required: true},
     courses: {type: Schema.Types.ObjectId, ref: 'Course', required: true},
     introduction: {type: String, required: true, textarea: true},
-    email: {type: String, required: true},
+    email: {
+      type: String, required: true, mraEmailRecipient: true, // if this email can be used by sendEmail Action 
+    },
     phoneNumber: {type: String},
     // mraType: a link to a picture; mraPresent: present the picture; mraSharable: if the picture is sharable with other items
     photo: {type: String,  required: true,

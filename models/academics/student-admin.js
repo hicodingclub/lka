@@ -12,7 +12,7 @@ const views = [brief, detail, create, edit, textSearch, index];
 module.exports = {
   schema,
   views,
-  api: 'LCRUD',  //E - export
+  api: 'LCRUDM',  //E - export, M - eMail
   patch: ['muser_id'], //extra fields to patch to schema
   // owner: {enable: true, type: 'user'},
   mraUI: {

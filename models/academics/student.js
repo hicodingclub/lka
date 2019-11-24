@@ -22,6 +22,7 @@ var schema = new Schema(
       trim: true,
       lowercase: true,
       validate: [validateEmail, 'Please fill a valid email address'],
+      mraEmailRecipient: true, // if this email can be used by sendEmail Action
     },
     phoneNumber: {
       type: String, required: true, maxlength: 20,
@@ -40,6 +41,7 @@ var schema = new Schema(
       trim: true,
       lowercase: true,
       validate: [validateEmail, 'Please fill a valid email address'],
+      mraEmailRecipient: true, // if this email can be used by sendEmail Action
     },
 
     GuardianTwoName: {type: String, required: false, maxlength: 100},
@@ -51,6 +53,7 @@ var schema = new Schema(
       trim: true,
       lowercase: true,
       validate: [validateEmail, 'Please fill a valid email address'],
+      mraEmailRecipient: true, // if this email can be used by sendEmail Action
     },
     notes: {type: String, textarea: true},
   },

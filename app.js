@@ -3,35 +3,34 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const appRootPath = require('app-root-path');
 
 const logger = require('./lib/logger');
 
-const db = require('./db');
+// Start mongoose DB
+require('./db');
 
 const meanRestExpress = require('@hicoder/express-core');
 
-//setup emailing
+// setup emailing
 const { MddsEmailer } = require('@hicoder/express-emailing');
-const emailer = new MddsEmailer('./.ses.json');
-const emailInfo = {
+const awsConfFile = path.join(appRootPath.toString(), process.env.AWS_CONFIG_FILE_NAME||'.aws.conf.json');
+const emailer = new MddsEmailer(awsConfFile);
+const emailInfoForAuth = {
   serverUrl: process.env.SERVER_URL || 'http://localhost:3000',
   serverUrlPasswordReset: process.env.PASSWD_RESET_URL || 'http://localhost:3000/auth/reset/',
 }
 
-//for auth client
+// for auth client
 const authApp = require('@hicoder/express-auth-app');
 const authFuncs = authApp.authFuncs;
-//for auth server
+// for auth server
 const authServer = require('@hicoder/express-auth-server');
 const defaultUserDef = authServer.authUserDef;
-const option = {authz: 'group'}; //user group based authorization
+const option = {authz: 'group'}; // user group based authorization
 const authRouter = authServer.GetDefaultAuthnRouter(defaultUserDef, option);
-authRouter.setEmailer(emailer, emailInfo); // set the emailer instance for sending emails
+authRouter.setEmailer(emailer, emailInfoForAuth); // set the emailer instance for sending emails
 const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFuncs);
-
-// this is special: we only get the router, but will only use it internally so authApp can pass managed access modules to it.
-// this use no external routing path defined for it because we don't manage public access in public facing app.
-const authzAccessRouter = authServer.GetDefaultAccessManageRouter('Internal-Access', authFuncs); //manage public access module
 
 //for academics models
 const academicsDbDefinition = require('./models/academics/index-public');
@@ -40,10 +39,6 @@ const academicsRouter = meanRestExpress.RestRouter(academicsDbDefinition, 'Acade
 //for public models
 const publicInfoDbDefinition = require('./models/publicInfo/index-public');
 const publicInfoRouter = meanRestExpress.RestRouter(publicInfoDbDefinition, 'PublicInfo', authFuncs);
-
-//for pipeline models
-const pipelineDef = require('./models/pipeline/index');
-const pipelineRouter = meanRestExpress.RestRouter(pipelineDef, 'Pipeline', authFuncs);
 
 //file server
 const fileSvr = require('@hicoder/express-file-server');
@@ -59,9 +54,13 @@ const dbSOption = {
 }
 const fileSvrRouter = fileSvr.ExpressRouter(defaultAdminSysDef, 'Files', authFuncs, fileSOption);
 
+// this is special: we only get the router, but will only use it internally for authApp to pass managed access modules to it.
+// there is no external routing path defined for it because we don't manage public access in public facing app.
+const authzAccessRouter = authServer.GetDefaultAccessManageRouter('Internal-Access', authFuncs); // public access module
+
 //Authorization App Client. Call it after all meanRestExpress resources are generated.
-const publicModules = ['Users', 'Academics', 'PublicInfo', 'Pipeline', 'Files']; //the modules that for public access
-//pass in authzAccessRouter so authApp can upload the managed role moduoes to authzAccessRouter
+const publicModules = ['Users', 'Academics', 'PublicInfo', 'Files']; // the modules that for public access
+//pass in authzAccessRouter so authApp can upload the managed role modules to authzAccessRouter
 authApp.run('local', 'app-key', 'app-secrete', authzAccessRouter, {'accessModules': publicModules});
 
 const app = express();
@@ -80,32 +79,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/academics', academicsRouter);
 app.use('/api/publicinfo', publicInfoRouter);
-app.use('/api/pipeline', pipelineRouter);
 app.use('/api/files', fileSvrRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 
-//for file upload
-var multer = require('multer');
-var upload = multer({ dest: '/tmp/'});
-var fs = require('fs');
-
-//File input field name is simply 'file'
-app.post('/api/images', upload.single('file'), function(req, res) {
-    var file = __dirname + '/' + req.file.filename;
-    fs.rename(req.file.path, file, function(err) {
-     if (err) {
-       console.log(err);
-       res.send(500);
-     } else {
-       res.json({
-         message: 'File uploaded successfully',
-         filename: req.file.filename
-       });
-     }
-    });
-});
-
+// Fall back, return index.html
 app.get(/.*/, function(req, res, next) {
   if (req.accepts('html')) {
 	  return res.sendFile(path.join(__dirname, './public/index.html'));
