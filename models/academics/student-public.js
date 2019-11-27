@@ -15,7 +15,7 @@ module.exports = {
   api: 'LCRUD',
   patch: ['muser_id'], //extra fields to patch to schema
   owner: {enable: true, type: 'user'},
-  actionViews: 'S', //home - home page list view, s: select view for pipeline/composite, d: slides list view
+  listWidgets: ['sel'], //home - home page list view, s: select view for pipeline/composite, d: slides list view
 
   mraUI: {
     listType: 'grid', // table, list, or grid

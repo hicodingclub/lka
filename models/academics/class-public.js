@@ -14,7 +14,7 @@ module.exports = {
   schema,
   views,
   api: 'LR',
-  actionViews: 'HS', //home - home page list view, s: select view for pipeline/composite
+  listWidgets: ['clean', 'sel'], //clean - clean list view - list only, sel: select view for pipeline/composite
   mraUI: {
     listType: 'table', // table, list, or grid
     listToDetail: 'link', // link, click, none

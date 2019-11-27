@@ -14,7 +14,7 @@ module.exports = {
   views, 
   name: 'Key Notes',
   api: 'LR',
-  actionViews: 'D', //home - home page list view, s: select view for pipeline/composite, d: slides list view
+  listWidgets: ['sld'], //home - home page list view, s: select view for pipeline/composite, d: slides list view
   mraUI: {
     detailType: 'slide', //use the slide view in detailed page
     listType: 'list', // list, table, or grid

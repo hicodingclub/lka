@@ -17,7 +17,7 @@ module.exports = {
   schema,
   views,
   api: "LR",
-  actionViews: 'H', //home - home page list view, s: select view for pipeline/composite
+  listWidgets: ['clean'], //home - home page list view, s: select view for pipeline/composite
   mraUI: {
     listTitle: 'All Programs',
     detailTitle: 'Program',
