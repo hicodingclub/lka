@@ -13,7 +13,7 @@ module.exports = {
   schema,
   views,
   api: "LR",
-  actionViews: "H",
+  listWidgets: ['clean'],
   mraUI: {
     detailType: 'post', //use the post view in detailed page
     listType: 'list', // list, table, or grid
