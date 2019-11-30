@@ -25,7 +25,14 @@ const schemas = {
      schema: fileSchema,
      views: [fB, fD, fC, fE, fTS, fI],
      api: 'LU',  // api exposed by rest controller
-     name: 'Picture'
+     name: 'Picture',
+     mraUI: {
+      listCategories: [
+        {
+          listCategoryField: 'group',
+        },
+      ],
+     },
   },
   'mfilegroup': {
      schema: fileGroupSchema,
