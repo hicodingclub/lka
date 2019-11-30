@@ -30,6 +30,8 @@ const schemas = {
       listCategories: [
         {
           listCategoryField: 'group',
+          showCategoryCounts: true,
+          showEmptyCategory: false,
         },
       ],
      },
