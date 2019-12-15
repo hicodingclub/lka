@@ -7,7 +7,9 @@ const schema = new Schema(
     title: {type: String, required: true},
     description: {type: String, required: true, maxlength: 1000, textarea: true, },
     signaturePicture: {type: String,  required: false,
-      mraType: 'picture', mraSharable: true},
+      mraType: 'picture',
+      aspectRatio: 4/3,
+      mraSharable: true},
     tag: {type: String, required: false, maxlength: 50},
   }
 );
