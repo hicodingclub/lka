@@ -22,5 +22,6 @@ module.exports = {
       'Class': 'Program Classes',
       'Teacher': 'Program Instructors'
     },
+    listSelectType: 'index', // only show index field for selection
   }
 };
