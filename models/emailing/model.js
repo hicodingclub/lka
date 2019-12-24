@@ -78,7 +78,8 @@ const schemas = {
   'emailTemplate': {
     schema: emailTemplateSchema,
     views: [brief, detail, create, edit, textSearch, index],
-    name: 'Email Template'
+    name: 'Email Template',
+    api: 'LCRUD',
   },
   'emailSettings': {
     schema: emailSettingsSchema,

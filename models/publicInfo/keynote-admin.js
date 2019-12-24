@@ -12,6 +12,7 @@ const views = [Brief, Detail, Creat, Edit, TextSearch, Index];
 module.exports = {
   schema,
   views, 
+  api: 'LCRUD',
   name: 'Key Notes',
   mraUI: {
     detailType: 'slide', //use the slide view in detailed page
