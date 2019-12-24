@@ -12,6 +12,7 @@ const views = [Brief, Detail, Creat, Edit, TextSearch, Index];
 module.exports = {
   schema,
   views, 
+  api: 'LCRUD',
   name: 'General Information',
   mraUI: {
     detailType: 'info', //use the info view in detailed page

@@ -51,17 +51,20 @@ const schemas = {
   "musergroup": {
     schema: roleSchema,
     views: [roleBrief, roleDetail, roleCreat, roleEdit, roleTextSearch, roleIndex],
-    name: 'User Group'
+    name: 'User Group',
+    api: 'LCRUD',
   },
   "mpubmodule": {
     schema: moduleSchema,
     views: [moduleBrief, moduleDetail, moduleCreat, moduleEdit, moduleTextSearch, moduleIndex],
-    name: 'Public Module'
+    name: 'Public Module',
+    api: 'LCRUD',
   },
   "mpubaccess": {
     schema: permissionSchema,
     views: [permBrief, permDetail, permCreat, permEdit, permTextSearch, permIndex],
-    name: 'Access Control'
+    name: 'Access Control',
+    api: 'LCRUD',
   }
 };
 

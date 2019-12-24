@@ -13,6 +13,7 @@ module.exports = {
   schema,
   views,
   name: 'FAQ',
+  api: 'LCRUD',
   mraUI: {
     listType: 'list', // list, table, or grid
     defaultListSort: {'order': 'asc'},

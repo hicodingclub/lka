@@ -51,17 +51,20 @@ const schemas = {
   "mrole": {
     schema: roleSchema,
     views: [roleBrief, roleDetail, roleCreat, roleEdit, roleTextSearch, roleIndex],
-    name: 'Role'
+    name: 'Role',
+    api: 'LCRUD',
   },
   "mmodule": {
     schema: moduleSchema,
     views: [moduleBrief, moduleDetail, moduleCreat, moduleEdit, moduleTextSearch, moduleIndex],
-    name: 'System Module'
+    name: 'System Module',
+    api: 'LCRUD',
   },
   "mpermission": {
     schema: permissionSchema,
     views: [permBrief, permDetail, permCreat, permEdit, permTextSearch, permIndex],
-    name: 'Permission'
+    name: 'Permission',
+    api: 'LCRUD',
   }
 };
 
@@ -97,7 +100,8 @@ const GetAuthzModuleDef = function(userSchemaName, userSchema) {
     schema: accountRoleSchema,
     views: [accountRoleBrief, accountRoleDetail, accountRoleCreat, 
       accountRoleEdit, accountRoleTextSearch, accountRoleIndex],
-    name: 'Account Role'
+    name: 'Account Role',
+    api: 'LCRUD',
   }
   
   return {schemas: schemas, config: config, authz: authz};
