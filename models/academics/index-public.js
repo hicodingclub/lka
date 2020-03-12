@@ -4,6 +4,7 @@ let courseDef = require('./course-public');
 let courseInstanceDef = require('./class-public');
 let studentClassSchemaDef = require('./student_class-public')
 let classEnrollDef = require('./classenroll-public')
+let payment = require('./payment-public');
 let termsDef = require('./terms-public')
 
 const schemas = {
@@ -14,6 +15,7 @@ const schemas = {
   StudentClass: studentClassSchemaDef,
   ClassEnroll: classEnrollDef,
   Terms: termsDef,
+  Payment: payment,
 };
 
 const config = {

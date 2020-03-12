@@ -32,6 +32,7 @@ module.exports = {
         },
     
         detailTitle: 'Enrollment',
+        detailActions: [["Make Payment", "/actions/pay"]],
 
         selectActionViewType: 'grid', // select extraView type: dropdown, grid, table, list
     },
