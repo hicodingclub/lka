@@ -13,8 +13,10 @@ module.exports = {
   schema,
   views,
   api: 'LCRUD',
+
   patch: ['muser_id'], //extra fields to patch to schema
   owner: {enable: true, type: 'user'},
+
   listWidgets: ['sel'], //home - home page list view, s: select view for pipeline/composite, d: slides list view
 
   mraUI: {
