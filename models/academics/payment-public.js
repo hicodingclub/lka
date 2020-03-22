@@ -14,7 +14,10 @@ module.exports = {
     schema, 
     views,
     name: 'Payment',
+
     patch: ['muser_id'], //extra fields to patch to schema
+    owner: {enable: true, type: 'user'},
+
     api: 'LCR',  //E - export
     mraUI: {
         listType: 'list', // table, list, or grid
