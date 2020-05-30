@@ -20,13 +20,13 @@ const emailInfoForAuth = {
   serverUrlPasswordReset: process.env.ADMIN_PASSWD_RESET_URL || 'http://localhost:3001/auth/reset/',
 }
 
+const option = {authz: 'role'}; // admin role based authorization
 //for auth client
 const authApp = require('@hicoder/express-auth-app');
-const authFuncs = authApp.authFuncs;
+const authFuncs = authApp.getAuthFuncs(option);
 //for auth server
 const authServer = require('@hicoder/express-auth-server');
 const authAccountDef = authServer.authAccountDef;
-const option = {authz: 'role'}; // admin role based authorization
 const authRouter = authServer.GetDefaultAuthnRouter(authAccountDef, option);
 authRouter.setEmailer(emailer, emailInfoForAuth); // set the emailer instance for sending emails
 
