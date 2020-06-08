@@ -26,5 +26,8 @@ module.exports = {
   associations: {
     'StudentClass': ['student',  'Export Students'],// further show the student (object refer field) for this reference list
     'ClassEnroll':  ['student', 'Export Enrollments'],// further show the student (object refer field) for this reference list
-  }
+  },
+  mraBE: {
+    valueSearchFields: ['season'],
+  },
 };
