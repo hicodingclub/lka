@@ -21,13 +21,13 @@ const emailInfoForAuth = {
   serverUrlPasswordReset: process.env.PASSWD_RESET_URL || 'http://localhost:3000/auth/reset/',
 }
 
+const option = {authz: 'group'}; // user group based authorization
 // for auth client
 const authApp = require('@hicoder/express-auth-app');
-const authFuncs = authApp.authFuncs;
+const authFuncs = authApp.getAuthFuncs(option);
 // for auth server
 const authServer = require('@hicoder/express-auth-server');
 const defaultUserDef = authServer.authUserDef;
-const option = {authz: 'group'}; // user group based authorization
 const authRouter = authServer.GetDefaultAuthnRouter(defaultUserDef, option);
 authRouter.setEmailer(emailer, emailInfoForAuth); // set the emailer instance for sending emails
 const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFuncs);

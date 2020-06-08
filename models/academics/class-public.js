@@ -14,7 +14,7 @@ module.exports = {
   schema,
   views,
   api: 'LR',
-  listWidgets: ['clean', 'sel'], //clean - clean list view - list only, sel: select view for pipeline/composite
+  listWidgets: ['sel'], //clean - clean list view - list only, sel: select view for pipeline/composite
   mraUI: {
     listType: 'table', // table, list, or grid
     listToDetail: 'link', // link, click, none
@@ -32,12 +32,8 @@ module.exports = {
         listCategoryField: 'season',
       },
     ],
-
     listTitle: 'Programs and Classes',
-
     detailTitle: 'Class',
-
-    homeListNumber: 6,
 
     selectActionViewType: 'dropdown', // select extraView type: dropdown, grid, table, list
   },
