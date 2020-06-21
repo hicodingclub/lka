@@ -37,4 +37,7 @@ module.exports = {
 
     selectActionViewType: 'dropdown', // select extraView type: dropdown, grid, table, list
   },
+  mraBE: {
+    valueSearchFields: ['season'],
+  },
 };
