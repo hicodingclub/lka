@@ -80,6 +80,11 @@ const authz = { //only users with permission can see this module
   "module-authz": {"LoginUser": {"others": "", "own": ""}, "Anyone": ""},
 }
 
+const DB_CONFIG = {
+  APP_NAME: process.env.APP_NAME,
+  MODULE_NAME: 'AUTH',
+};
+
 const GetAuthzModuleDef = function(userSchemaName, userSchema) {
   schemas[userSchemaName] = userSchema;
   
@@ -104,7 +109,7 @@ const GetAuthzModuleDef = function(userSchemaName, userSchema) {
     api: 'LCRUD',
   }
   
-  return {schemas: schemas, config: config, authz: authz};
+  return {schemas: schemas, config: config, authz: authz, DB_CONFIG};
 }
 
 const authAccountDef = require('./model.account');
