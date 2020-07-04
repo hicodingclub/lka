@@ -16,4 +16,5 @@ module.exports = {
     name: 'Class Enrollments',
     patch: ['muser_id'], //extra fields to patch to schema
     api: 'LCRUDE',  //E - export
+    mraUI: { defaultListSort: { createdAt: 'desc' } },
 };

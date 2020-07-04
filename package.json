@@ -8,11 +8,11 @@
     "windevstart": "set DEBUG=express:* & nodemon ./bin/www"
   },
   "dependencies": {
-    "@hicoder/express-emailing": "0.9.25",
-    "@hicoder/express-auth-app": "0.9.25",
-    "@hicoder/express-auth-server": "0.9.25",
-    "@hicoder/express-file-server": "0.9.25",
-    "@hicoder/express-core": "0.9.25",
+    "@hicoder/express-emailing": "0.9.30",
+    "@hicoder/express-auth-app": "0.9.30",
+    "@hicoder/express-auth-server": "0.9.30",
+    "@hicoder/express-file-server": "0.9.30",
+    "@hicoder/express-core": "0.9.30",
     "app-root-path": "^2.2.1",
     "async": "^2.6.2",
     "aws-sdk": "^2.521.0",
