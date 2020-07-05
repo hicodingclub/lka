@@ -16,7 +16,7 @@ var schema = new Schema(
   {
     first_name: {type: String, required: true, maxlength: 100},
     last_name: {type: String, required: true, maxlength: 100},
-    date_of_birth: {type: Date},
+    date_of_birth: {type: Date, mraType: 'mediumDate'},
     email: {
       type: String, required: true, maxlength: 100,
       trim: true,
