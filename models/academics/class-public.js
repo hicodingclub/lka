@@ -1,13 +1,13 @@
 const schema = require('./class');
 
-var brief = "title (course)[Program] (season) startTime endTime dayOfWeek timeSlot (enrollTerm)";
-var detail = "title | description | course[Program] teacher[Instructor] price | season startTime endTime duration | dayOfWeek timeSlot (enrollTerm)";
-var creat = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
-var edit = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
-var textSearch = "title teacher course";
-var index = "title";
+const brief = "title (course)[Program] (season) startTime endTime dayOfWeek timeSlot (enrollTerm)";
+const detail = "title | description | course[Program] teacher[Instructor] price | season startTime endTime duration | dayOfWeek timeSlot (enrollTerm)";
+const creat = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
+const edit = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
+const textSearch = "title teacher course";
+const index = "title";
 
-var views = [brief, detail, creat, edit, textSearch, index];
+const views = [brief, detail, creat, edit, textSearch, index];
 
 //Export model
 module.exports = {
