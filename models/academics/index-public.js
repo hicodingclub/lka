@@ -5,7 +5,8 @@ let courseInstanceDef = require('./class-public');
 let studentClassSchemaDef = require('./student_class-public')
 let classEnrollDef = require('./classenroll-public')
 let payment = require('./payment-public');
-let termsDef = require('./terms-public')
+let termsDef = require('./terms-public');
+let memberDef = require("./member-public");
 
 const schemas = {
   Student: studentDef,
@@ -16,6 +17,7 @@ const schemas = {
   ClassEnroll: classEnrollDef,
   Terms: termsDef,
   Payment: payment,
+  Member: memberDef,
 };
 
 const config = {

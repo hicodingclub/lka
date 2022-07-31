@@ -15,8 +15,21 @@ module.exports = {
   name: 'Terms',
   api: 'LR',
   mraUI: {
-    detailType: 'term', ////use the 'term' view in detailed page
-    listType: 'list', // list, table, or grid
+    api: 'R', // Only generated detailed view in front end.
+
+    listWidgets: {
+      general: {
+        views: ['list'],
+      },
+    },
+    listWidgetTypes: {
+      general: 'general',
+    },
+
+    detailWidgetTypes: {
+      'general': 'term', // use the 'term' view in detailed page
+    },
+
     detailRefBlackList: ['Class'], // not show these reference sub list in detail view
   },
 };

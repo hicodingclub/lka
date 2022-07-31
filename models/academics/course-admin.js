@@ -18,10 +18,26 @@ module.exports = {
   views,
   name: 'Programs',
   mraUI: {
+    listWidgets: {
+      general: {
+        views: ["table", "list", "grid"],
+      },
+      select: {
+        views: ["index"],
+      },
+      sub: {
+        views: ["table"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+      select: "select",
+      sub: "sub",
+    },
+
     detailRefName: {
       'Class': 'Program Classes',
       'Teacher': 'Program Instructors'
     },
-    listSelectType: 'index', // only show index field for selection
   }
 };

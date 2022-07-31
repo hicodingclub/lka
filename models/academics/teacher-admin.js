@@ -15,6 +15,21 @@ module.exports = {
   name: "Instructors",
   api: 'LCRUDMA',  //E - export, M - eMail
   mraUI: {
-    listType: 'grid', // table, list, or grid
+    listWidgets: {
+      general: {
+        views: ["grid", "list"],
+      },
+      select: {
+        views: ["index"],
+      },
+      sub: {
+        views: ["list"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+      select: "select",
+      sub: "sub",
+    },
   },
 };

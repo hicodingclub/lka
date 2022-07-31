@@ -1,9 +1,9 @@
 const schema = require('./class');
 
-const brief = "title (course)[Program] (season) startTime endTime dayOfWeek timeSlot (enrollTerm)";
-const detail = "title | description | course[Program] teacher[Instructor] price | season startTime endTime duration | dayOfWeek timeSlot (enrollTerm)";
-const creat = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
-const edit = "title course[Program] description teacher[Instructor] price season startTime endTime dayOfWeek hot";
+const brief = "title (course)[Program] (season) startTime endTime dayOfWeek timeSlot (enrollTerm) (price) (priceOptions)";
+const detail = "title | course[Program] teacher[Instructor] | price priceOptions | season startTime endTime duration | dayOfWeek timeSlot | description | (enrollTerm)";
+const creat = "title course[Program] description teacher[Instructor] price priceOptions season startTime endTime dayOfWeek hot";
+const edit = "title course[Program] description teacher[Instructor] price priceOptions season startTime endTime dayOfWeek hot";
 const textSearch = "title teacher course";
 const index = "title";
 
@@ -14,9 +14,31 @@ module.exports = {
   schema,
   views,
   api: 'LR',
-  listWidgets: ['sel'], //clean - clean list view - list only, sel: select view for pipeline/composite
   mraUI: {
-    listType: 'table', // table, list, or grid
+    listWidgets: {
+      general: {
+        views: ['table', 'list'],
+      },
+      select: {
+        views: ['list'],
+      },
+      sub: {
+        views: ['list'],
+      },
+      calendar: {
+        views: ['calendar'],
+      },
+      'view-only': {
+        views: ['list'],
+      }
+    },
+    listWidgetTypes: {
+      general: 'general',
+      select: 'select',
+      sub: 'sub',
+    },
+    listExtraWidgets: ['view-only'],
+
     listToDetail: 'link', // link, click, none
     listItemPipelines: [],
     detailActions: [["Enroll", "/actions/enroll"]],
@@ -32,6 +54,7 @@ module.exports = {
         listCategoryField: 'season',
       },
     ],
+    listIncludeSubDetail: false,
     listTitle: 'Programs and Classes',
     detailTitle: 'Class',
 

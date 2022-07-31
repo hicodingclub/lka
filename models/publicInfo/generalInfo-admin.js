@@ -15,8 +15,25 @@ module.exports = {
   api: 'LCRUD',
   name: 'General Information',
   mraUI: {
-    detailType: 'info', //use the info view in detailed page
-    listType: 'list', // list, table, or grid
+    listWidgets: {
+      general: {
+        views: ["list"],
+      },
+      select: {
+        views: ["list"],
+      },
+      sub: {
+        views: ["list"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+      select: "select",
+      sub: "sub",
+    },
+    detailWidgetTypes: {
+      general: 'info',
+    },
     defaultListSort: {'title': 'asc'},
   },
 };

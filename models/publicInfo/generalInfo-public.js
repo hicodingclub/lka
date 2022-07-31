@@ -15,10 +15,10 @@ module.exports = {
   name: 'General Information',
   api: "LR",
   mraUI: {
-    detailType: 'info', //use the info view in detailed page
-    listType: 'list', // list, table, or grid
-    defaultListSort: {'title': 'asc'},
-    publicListFilter: {},
-    homeListNumber: 3,
+    api: "R", // Only generate detailed view for front end.
+
+    detailWidgetTypes: {
+      general: 'info',
+    },
   },
 };

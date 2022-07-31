@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-const validatePhone = function(phone) {
-  var re = /^(\d+-?)+\d+$/;
-  return re.test(phone)
-}
+const phonePattern = /\(?\d{3}\)?-? *\d{3}-? *-?\d{4}/
+const validatePhone = function (phone) {
+  return phonePattern.test(phone);
+};
 
-const validateEmail = function(email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email)
-}
+const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const validateEmail = function (email) {
+  return emailPattern.test(email);
+};
 
 var schema = new Schema(
   {
@@ -21,13 +21,15 @@ var schema = new Schema(
       type: String, required: true, maxlength: 100,
       trim: true,
       lowercase: true,
-      validate: [validateEmail, 'Please fill a valid email address'],
+      validate: [validateEmail, "Please enter a valid email address"],
+      match: [emailPattern, "Please enter a valid email address"],
       mraEmailRecipient: true, // if this email can be used by sendEmail Action
     },
     phoneNumber: {
       type: String, required: true, maxlength: 20,
       trim: true,
-      validate: [validatePhone, 'Please fill a valid phone number']
+      validate: [validatePhone, 'Please fill a valid phone number'],
+      match: [phonePattern, "Please enter a valid phone number"],
     },
     school: {type: String, required: true, maxlength: 100},
     grade: {type: Number, required: true},
@@ -35,26 +37,32 @@ var schema = new Schema(
     GuardianOnePhone: {type: String, required: false, maxlength: 20,
       trim: true,
       validate: [validatePhone, 'Please fill a valid phone number'],
+      match: [phonePattern, "Please enter a valid phone number"],
       required: true,
     },
     GuardianOneEmail: {type: String, required: false, maxlength: 100,
       trim: true,
       lowercase: true,
       validate: [validateEmail, 'Please fill a valid email address'],
+      match: [emailPattern, "Please enter a valid email address"],
       mraEmailRecipient: true, // if this email can be used by sendEmail Action
     },
 
     GuardianTwoName: {type: String, required: false, maxlength: 100},
     GuardianTwoPhone: {type: String, required: false, maxlength: 20,
       trim: true,
-      validate: [validatePhone, 'Please fill a valid phone number']
+      validate: [validatePhone, 'Please fill a valid phone number'],
+      match: [phonePattern, "Please enter a valid phone number"],
+
     },
     GuardianTwoEmail: {type: String, required: false, maxlength: 100,
       trim: true,
       lowercase: true,
       validate: [validateEmail, 'Please fill a valid email address'],
+      match: [emailPattern, "Please enter a valid email address"],
       mraEmailRecipient: true, // if this email can be used by sendEmail Action
     },
+    member: { type: Schema.Types.ObjectId, ref: 'Member' }, //reference to the associated member. Not required to allow any one to register.
     notes: {type: String, textarea: true},
   },
   {
@@ -71,21 +79,5 @@ schema.virtual('name').get(function () {
   if (!fullName) fullName = "Unknown"
   return fullName;
 });
-
-const emailValidate = [
-  {validator: validateEmail, msg: "Please fill a valid email address."},
-];
-const phoneValidate = [
-  {validator: validatePhone, msg: "Please fill a valid phone number."},
-];
-const validators = {
-  "email": emailValidate,
-  "GuardianOneEmail": emailValidate,
-  "GuardianTwoEmail": emailValidate,
-  "phoneNumber": phoneValidate,
-  "GuardianOnePhone": phoneValidate,
-  "GuardianTwoPhone": phoneValidate,
-}
-schema.mddsValidators = validators;
 
 module.exports = schema;

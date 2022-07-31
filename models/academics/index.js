@@ -6,6 +6,7 @@ let studentClassSchemaDef = require('./student_class-admin');
 let classEnrollDef = require('./classenroll-admin');
 let payment = require('./payment-admin');
 let termsDef = require('./terms-admin');
+let memberDef = require("./member-admin");
 
 const schemas = {
   ClassEnroll: classEnrollDef,
@@ -16,6 +17,7 @@ const schemas = {
   Teacher: teacherDef,
   Terms: termsDef,
   Payment: payment,
+  Member: memberDef,
 };
 
 const config = {

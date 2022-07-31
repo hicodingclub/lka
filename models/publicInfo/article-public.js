@@ -13,10 +13,18 @@ module.exports = {
   schema,
   views,
   api: "LR",
-  listWidgets: [],
   mraUI: {
-    detailType: 'post', //use the post view in detailed page
-    listType: 'list', // list, table, or grid
+    listWidgets: {
+      general: {
+        views: ["list"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+    },
+    detailWidgetTypes: {
+      general: 'post',
+    },
     listToDetail: 'link', // link, click, or none
     defaultListSort: {'publishDate': 'desc'},
     publicListFilter: {},
