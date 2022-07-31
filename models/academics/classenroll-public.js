@@ -1,4 +1,5 @@
 const schema = require('./classenroll');
+const { emailer } = require('./classenroll-emailing');
 
 var brief = 'student class price status createdAt[Created Time]';
 var detail = 'student class price status notes createdAt[Created Time]';
@@ -54,4 +55,7 @@ module.exports = {
 
     selectActionViewType: 'grid', // select extraView type: dropdown, grid, table, list
   },
+  mraBE: {
+    emailer,
+  }
 };
