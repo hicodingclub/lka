@@ -36,6 +36,7 @@ const usersRouter = meanRestExpress.RestRouter(defaultUserDef, 'Users', authFunc
 //for academics models
 const academicsDbDefinition = require('./models/academics/index-public');
 const academicsRouter = meanRestExpress.RestRouter(academicsDbDefinition, 'Academics', authFuncs);
+academicsRouter.setEmailer(emailer, {});
 
 //for public models
 const publicInfoDbDefinition = require('./models/publicInfo/index-public');
