@@ -15,8 +15,25 @@ module.exports = {
   name: 'Resource',
 
   mraUI: {
-    detailType: 'post', //use the post view in detailed page
-    listType: 'list', // list, table, or grid
+    listWidgets: {
+      general: {
+        views: ["table", "list",],
+      },
+      select: {
+        views: ["table", "list"],
+      },
+      sub: {
+        views: ["table", "list"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+      select: "select",
+      sub: "sub",
+    },
+    detailWidgetTypes: {
+      general: 'post',
+    },
     listToDetail: 'click', // link, click, or none
     defaultListSort: {'publishDate': 'desc'},
   },

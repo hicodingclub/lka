@@ -15,7 +15,14 @@ module.exports = {
   name: 'FAQ',
   api: 'L',
   mraUI: {
-    listType: 'list', // list, table, or grid
+    listWidgets: {
+      general: {
+        views: ["list"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+    },
     defaultListSort: {'order': 'asc'},
     publicListFilter: {'enable': true},
 

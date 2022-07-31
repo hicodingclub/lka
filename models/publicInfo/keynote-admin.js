@@ -15,8 +15,25 @@ module.exports = {
   api: 'LCRUD',
   name: 'Key Notes',
   mraUI: {
-    detailType: 'slide', //use the slide view in detailed page
-    listType: 'list', // list, table, or grid
+    listWidgets: {
+      general: {
+        views: ["table", "list", "grid", "sld"],
+      },
+      select: {
+        views: ["table", "list"],
+      },
+      sub: {
+        views: ["table", "list"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+      select: "select",
+      sub: "sub",
+    },
+    detailWidgetTypes: {
+      general: 'gallerySideIntro',
+    },
     defaultListSort: {'title': 'asc'},
   },
 };

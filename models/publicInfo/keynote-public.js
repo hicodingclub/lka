@@ -14,10 +14,20 @@ module.exports = {
   views, 
   name: 'Key Notes',
   api: 'LR',
-  listWidgets: ['sld'], //home - home page list view, s: select view for pipeline/composite, d: slides list view
   mraUI: {
-    detailType: 'slide', //use the slide view in detailed page
-    listType: 'list', // list, table, or grid
+    listWidgets: {
+      "view-only": {
+        views: ['sld', 'gallery-bottom-title'],
+      },
+    },
+    listWidgetTypes: {
+      general: "view-only",
+    },
+
+    detailWidgetTypes: {
+      general: 'slide',
+    },
+
     defaultListSort: {'title': 'asc'},
     publicListFilter: {},
     homeListNumber: 3,

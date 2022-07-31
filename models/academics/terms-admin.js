@@ -15,6 +15,21 @@ module.exports = {
   name: 'Terms',
   api: 'LCRUD',
   mraUI: {
-    listType: 'list', // list, table, or grid
+    listWidgets: {
+      general: {
+        views: ['list'],
+      },
+      select: {
+        views: ['list'],
+      },
+      sub: {
+        views: ['list'],
+      },
+    },
+    listWidgetTypes: {
+      general: 'general',
+      select: 'select',
+      sub: 'sub',
+    },
   },
 };

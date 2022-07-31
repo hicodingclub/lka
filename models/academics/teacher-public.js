@@ -15,9 +15,17 @@ module.exports = {
   api: "LR",
   name: "Instructors",
   mraUI: {
-    listType: 'grid', // table, list, or grid
+    listWidgets: {
+      general: {
+        views: ["grid"],
+      },
+    },
+    listWidgetTypes: {
+      general: "general",
+    },
     listTitle: 'Instructors',
     detailTitle: 'Instructor',
-
+    listIncludeSubDetail: false,
+    listToDetail: 'link', // link, click, or none
   },
 };

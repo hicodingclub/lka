@@ -8,24 +8,25 @@
     "windevstart": "set DEBUG=express:* & nodemon ./bin/www"
   },
   "dependencies": {
-    "@hicoder/express-emailing": "0.9.30",
-    "@hicoder/express-auth-app": "0.9.30",
-    "@hicoder/express-auth-server": "0.9.30",
-    "@hicoder/express-file-server": "0.9.30",
-    "@hicoder/express-core": "0.9.30",
-    "app-root-path": "^2.2.1",
-    "async": "^2.6.2",
-    "aws-sdk": "^2.521.0",
-    "cookie-parser": "~1.4.3",
-    "dotenv": "^8.0.0",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "mongoose": "^5.9.18",
-    "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11",
-    "winston": "^3.2.1"
+    "@hicoder/express-auth-app": "0.9.70",
+    "@hicoder/express-auth-server": "0.9.70",
+    "@hicoder/express-core": "0.9.70",
+    "@hicoder/express-emailing": "0.9.70",
+    "@hicoder/express-file-server": "0.9.70",
+    "app-root-path": "^3.0.0",
+    "async": "^3.2.3",
+    "aws-sdk": "^2.1130.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "~4.18.1",
+    "http-errors": "~2.0.0",
+    "mongoose": "^6.3.2",
+    "morgan": "~1.10.0",
+    "pug": "^3.0.2",
+    "winston": "^3.7.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2"
   }
 }

@@ -24,7 +24,8 @@ const emailInfoForAuth = {
 
 const option = {authz: 'role'}; // admin role based authorization
 //for auth client
-const authApp = require('@hicoder/express-auth-app');
+const AuthApp = require("@hicoder/express-auth-app");
+const authApp = new AuthApp();
 const authFuncs = authApp.getAuthFuncs(option);
 //for auth server
 const authServer = require('@hicoder/express-auth-server');

@@ -6,7 +6,17 @@ const schema = new Schema(
   {
     title: {type: String, required: true},
     description: {type: String, required: true, editor: true},
-    price: {type: String, required: true},
+    price: { type: Number,  exclusiveRequired: true, mraType: 'currency'},
+    priceOptions: {
+      type: Map,
+      of: {type: Number, mraType: 'currency'},
+  
+      exclusiveRequiredWith: 'price',
+  
+      description: 'Provide serveral price options',
+      keyDescription: "The price option",
+      valueDescription: "The price",
+    },
     season: {type: String, maxlength: 50},
     startTime: {type: Date, required: true, mraType: 'mediumDate'},
     endTime: {type: Date, required: true, mraType: 'mediumDate'},

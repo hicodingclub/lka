@@ -11,6 +11,8 @@ var schema = new Schema(
     status: {type: String, enum: ['processing', 'paid', 'confirmed', 'cancelled'], 
                  default: 'processing', required: true},
     notes: {type: String, textarea: true},
+    price: { type: Number, required: true, description: "Price for one person enrollment.", mraType: "currency" },
+    member: { type: Schema.Types.ObjectId, ref: 'Member' }, //reference to the associated member. Not required to allow any one to register.
   },
   {
     timestamps: true
