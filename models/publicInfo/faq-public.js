@@ -29,4 +29,9 @@ module.exports = {
     listTitle: 'Frequently Asked Questions',
 
   },
+  mraBE: {
+    searchObj: {
+        enable: true,
+    }
+  }
 };
